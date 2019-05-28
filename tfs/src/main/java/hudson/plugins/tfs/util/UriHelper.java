@@ -86,10 +86,14 @@ public class UriHelper {
     }
 
     public static boolean areSameGitRepo(final URIish a, final URIish b) {
-        final URI uriA = a == null ? null : URI.create(a.toString());
-        final URI uriB = b == null ? null : URI.create(b.toString());
+        try {
+            final URI uriA = a == null ? null : URI.create(a.toString());
+            final URI uriB = b == null ? null : URI.create(b.toString());
 
-        return areSameGitRepo(uriA, uriB);
+            return areSameGitRepo(uriA, uriB);
+        } catch(Exception e) {
+            return false;
+        }
     }
 
     public static boolean areSameGitRepo(final URI a, final URI b) {
